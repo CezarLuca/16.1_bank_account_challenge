@@ -72,6 +72,7 @@ function bankAccountReducer(state, action) {
 }
 
 export default function App() {
+    const [state, dispatch] = useReducer(bankAccountReducer, initialState);
     return (
         <div className="App">
             <h1>useReducer Bank Account</h1>
