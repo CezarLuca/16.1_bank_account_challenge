@@ -1,4 +1,3 @@
-import "./styles.css";
 import React, { useReducer } from "react";
 
 /*
@@ -39,6 +38,9 @@ const initialState = {
 };
 
 function bankAccountReducer(state, action) {
+    if (!state.isActive && action.type !== "openAccount") {
+        return state;
+    }
     switch (action.type) {
         case "openAccount":
             return { ...state, isActive: true, balance: 500 };
@@ -72,40 +74,63 @@ function bankAccountReducer(state, action) {
 }
 
 export default function App() {
-    const [state, dispatch] = useReducer(bankAccountReducer, initialState);
+    const [{ balance, loan }, dispatch] = useReducer(
+        bankAccountReducer,
+        initialState
+    );
     return (
         <div className="App">
             <h1>useReducer Bank Account</h1>
-            <p>Balance: X</p>
-            <p>Loan: X</p>
+            <p>Balance: {balance}</p>
+            <p>Loan: {loan}</p>
 
             <p>
-                <button onClick={() => {}} disabled={false}>
+                <button
+                    onClick={() => dispatch({ type: "openAccount" })}
+                    disabled={false}
+                >
                     Open account
                 </button>
             </p>
             <p>
-                <button onClick={() => {}} disabled={false}>
+                <button
+                    onClick={() => dispatch({ type: "deposit", amount: 150 })}
+                    disabled={false}
+                >
                     Deposit 150
                 </button>
             </p>
             <p>
-                <button onClick={() => {}} disabled={false}>
+                <button
+                    onClick={() => dispatch({ type: "withdraw", amount: 50 })}
+                    disabled={false}
+                >
                     Withdraw 50
                 </button>
             </p>
             <p>
-                <button onClick={() => {}} disabled={false}>
+                <button
+                    onClick={() =>
+                        dispatch({ type: "requestLoan", amount: 5000 })
+                    }
+                    disabled={false}
+                >
                     Request a loan of 5000
                 </button>
             </p>
             <p>
-                <button onClick={() => {}} disabled={false}>
+                <button
+                    onClick={() => dispatch({ type: "payLoan" })}
+                    disabled={false}
+                >
                     Pay loan
                 </button>
             </p>
             <p>
-                <button onClick={() => {}} disabled={false}>
+                <button
+                    onClick={() => dispatch({ type: "closeAccount" })}
+                    disabled={false}
+                >
                     Close account
                 </button>
             </p>
