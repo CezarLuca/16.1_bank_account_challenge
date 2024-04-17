@@ -1,4 +1,5 @@
 import "./styles.css";
+import React, { useReducer } from "react";
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -36,6 +37,39 @@ const initialState = {
     loan: 0,
     isActive: false,
 };
+
+function bankAccountReducer(state, action) {
+    switch (action.type) {
+        case "openAccount":
+            return { ...state, isActive: true, balance: 500 };
+        case "deposit":
+            return { ...state, balance: state.balance + action.amount };
+        case "withdraw":
+            return { ...state, balance: state.balance - action.amount };
+        case "requestLoan":
+            if (state.loan === 0) {
+                return {
+                    ...state,
+                    balance: state.balance + action.amount,
+                    loan: action.amount,
+                };
+            }
+            return state;
+        case "payLoan":
+            return {
+                ...state,
+                balance: state.balance - state.loan,
+                loan: 0,
+            };
+        case "closeAccount":
+            if (state.loan === 0 && state.balance === 0) {
+                return { ...initialState };
+            }
+            return state;
+        default:
+            return state;
+    }
+}
 
 export default function App() {
     return (
