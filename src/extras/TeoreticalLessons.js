@@ -20,5 +20,20 @@ useReducer:
     - Declarative state updates: complex state transitions are 
         mapped to actions and handled by the reducer function;
 
+When to use useReducer:
+    - When you have complex state transitions that are hard to 
+        express with useState;
+    - When you have multiple pieces of state that are closely 
+        related and need to be updated together;
+    - When you have state logic that is shared between multiple 
+        components and you want to avoid prop drilling;
+    - When you have state logic that is complex and you want to 
+        centralize it in one place;
+    - When you want to test state logic in isolation from the 
+        components that use it;
+    - When you want to use middleware or other advanced features 
+        like undo/redo, state persistence, etc.
+
+
 
 */
