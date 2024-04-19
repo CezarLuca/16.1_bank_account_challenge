@@ -16,6 +16,17 @@ body {
     padding: 0;
 }
 
+h1 {
+    color: #333;
+    font-size: 2.5em;
+}
+
+.accountDetails {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
 button {
     background-color: #4caf50;
     color: white;
