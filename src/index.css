@@ -1,7 +1,14 @@
 .App {
     font-family: sans-serif;
     text-align: center;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
 }
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -20,8 +27,14 @@ button {
     margin: 4px 2px;
     cursor: pointer;
     border: none;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 p {
     margin: 20px 0;
+    line-height: 1.6;
 }
