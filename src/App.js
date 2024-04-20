@@ -22,7 +22,7 @@ function bankAccountReducer(state, action) {
                 return {
                     ...state,
                     balance: state.balance + action.amount,
-                    loan: action.amount,
+                    loan: action.amount + action.amount * action.interestRate,
                 };
             }
             return state;
@@ -80,9 +80,13 @@ export default function App() {
             <p>
                 <button
                     onClick={() =>
-                        dispatch({ type: "requestLoan", amount: 5000 })
+                        dispatch({
+                            type: "requestLoan",
+                            amount: 5000,
+                            interestRate: 0.1,
+                        })
                     }
-                    disabled={!isActive}
+                    disabled={loan ? true : !isActive}
                 >
                     Request a loan of 5000
                 </button>
@@ -90,7 +94,7 @@ export default function App() {
             <p>
                 <button
                     onClick={() => dispatch({ type: "payLoan" })}
-                    disabled={!isActive}
+                    disabled={!loan}
                 >
                     Pay loan
                 </button>
