@@ -45,6 +45,11 @@ button:hover {
     background-color: #45a049;
 }
 
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 p {
     margin: 20px 0;
     line-height: 1.6;

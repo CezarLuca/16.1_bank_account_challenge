@@ -43,7 +43,7 @@ function bankAccountReducer(state, action) {
 }
 
 export default function App() {
-    const [{ balance, loan }, dispatch] = useReducer(
+    const [{ balance, loan, isActive }, dispatch] = useReducer(
         bankAccountReducer,
         initialState
     );
@@ -56,7 +56,7 @@ export default function App() {
             <p>
                 <button
                     onClick={() => dispatch({ type: "openAccount" })}
-                    disabled={false}
+                    disabled={isActive}
                 >
                     Open account
                 </button>
@@ -64,7 +64,7 @@ export default function App() {
             <p>
                 <button
                     onClick={() => dispatch({ type: "deposit", amount: 150 })}
-                    disabled={false}
+                    disabled={!isActive}
                 >
                     Deposit 150
                 </button>
@@ -72,7 +72,7 @@ export default function App() {
             <p>
                 <button
                     onClick={() => dispatch({ type: "withdraw", amount: 50 })}
-                    disabled={false}
+                    disabled={!isActive}
                 >
                     Withdraw 50
                 </button>
@@ -82,7 +82,7 @@ export default function App() {
                     onClick={() =>
                         dispatch({ type: "requestLoan", amount: 5000 })
                     }
-                    disabled={false}
+                    disabled={!isActive}
                 >
                     Request a loan of 5000
                 </button>
@@ -90,7 +90,7 @@ export default function App() {
             <p>
                 <button
                     onClick={() => dispatch({ type: "payLoan" })}
-                    disabled={false}
+                    disabled={!isActive}
                 >
                     Pay loan
                 </button>
@@ -98,7 +98,7 @@ export default function App() {
             <p>
                 <button
                     onClick={() => dispatch({ type: "closeAccount" })}
-                    disabled={false}
+                    disabled={!isActive}
                 >
                     Close account
                 </button>
